@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Tata AIG</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+    <string name="gold">Gold</string>
+    <string name="club">Club</string>
+    <string name="club_upper_case">Club</string>
+    <string name="gold_brick">gold brick</string>
+    <string name="upcoming_slab_target_wtd_gwp">Upcoming slab target (wtd. GWP)</string>
+    <string name="view_incentive_details">View Incentive Details</string>
+    <string name="_2cr">2Cr</string>
+    <string name="_15_1l">15.1L</string>
+    <string name="_50_000">50,000</string>
+    <string name="target">Target</string>
+    <string name="wtd_gwp">WTD. GWP</string>
+    <string name="earned">Earned</string>
+    <string name="eligible">Eligible</string>
+    <string name="_12_5_l">$12.5 L</string>
+    <string name="_1_1_cr">1.1 $Cr</string>
+    <string name="earned_premium">Earned Premium</string>
+    <string name="slab_target">Slab Target</string>
+    <string name="health_quaterly_control">Health Quaterly Control</string>
+    <string name="as_on_12_july">As On 12 July</string>
+    <string name="fy_24_25">FY 24-25</string>
+    <string name="progress_bag_icon">progress bag icon</string>
+    <string name="_02_may_02_aug_24">02 May - 02 Aug\'24</string>
+    <string name="total_policies">Total Policies</string>
+    <string name="total_gwp">Total GWP</string>
+    <string name="motor">Motor</string>
+    <string name="quote_icon">Quote icon</string>
+    <string name="_12">12</string>
+</resources>

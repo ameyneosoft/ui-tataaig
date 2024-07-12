@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:elevation="20dp"
+    android:paddingTop="20dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/image_card_bg"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/image_card_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="PRODUCT NAME"
+            android:textColor="@color/quoteBackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/image_text_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="180dp"
+            android:maxLines="3"
+            android:paddingHorizontal="10dp"
+            android:text="COPY UP TO THREE LINES WILL COME HERE ANYWHERE"
+            android:textColor="@color/white"
+            android:textFontWeight="500"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_card_heading" />
+
+        <TextView
+            android:id="@+id/image_text_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="180dp"
+            android:maxLines="2"
+            android:padding="10dp"
+            android:text="Lorem ipsem upto 2 lines"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_text_one" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/button_background"
+            android:text="Button"
+            android:paddingHorizontal="20dp"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_text_two" />
+
+        <ImageView
+            android:layout_width="130dp"
+            android:layout_height="200dp"
+            android:src="@drawable/family"
+            app:layout_constraintStart_toEndOf="@id/barrier_image"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_image"
+            app:constraint_referenced_ids="image_text_one,image_text_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="right" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

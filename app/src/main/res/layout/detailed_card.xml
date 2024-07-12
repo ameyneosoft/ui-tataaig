@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="15dp">
+
+        <TextView
+            android:id="@+id/dcard_top_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/fy_24_25"
+            style="@style/regular_style"
+            android:fontFamily="@font/poppins_bold"
+            app:layout_constraintEnd_toStartOf="@+id/dcard_top_right"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/dcard_top_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            style="@style/regular_style"
+            android:text="@string/as_on_12_july"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/dcard_top_left"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/dotted_line_one"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:background="@drawable/dotted_line"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dcard_top_left" />
+
+        <TextView
+            android:id="@+id/dcard_heading"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:text="@string/health_quaterly_control"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:paddingVertical="10dp"
+            android:fontFamily="@font/poppins_semibold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dotted_line_one" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/card_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="25"
+            android:paddingVertical="10dp"
+            app:indicatorColor="@color/progressStatus"
+            app:indicatorSize="80dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dcard_heading"
+            app:trackColor="@color/progressBackground"
+            app:trackThickness="6dp" />
+
+        <ImageView
+            android:id="@+id/progress_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/progress_bag_icon"
+            android:src="@drawable/motor"
+            app:layout_constraintBottom_toBottomOf="@id/card_progress"
+            app:layout_constraintEnd_toEndOf="@id/card_progress"
+            app:layout_constraintStart_toStartOf="@id/card_progress"
+            app:layout_constraintTop_toTopOf="@id/card_progress" />
+
+
+        <TextView
+            android:id="@+id/mid_left_heading"
+            android:layout_width="wrap_content"
+            android:maxWidth="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingHorizontal="10dp"
+            app:layout_constraintWidth="120dp"
+            android:text="@string/slab_target"
+            android:textSize="11sp"
+            android:fontFamily="@font/poppins_medium"
+            app:layout_constraintStart_toStartOf="@id/mid_left_value"
+            app:layout_constraintTop_toBottomOf="@id/dcard_heading" />
+
+        <TextView
+            android:id="@+id/mid_right_heading"
+            android:layout_width="wrap_content"
+            android:maxWidth="120dp"
+            android:layout_height="wrap_content"
+            android:textSize="11sp"
+            android:fontFamily="@font/poppins_medium"
+            android:paddingHorizontal="10dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/earned_premium"
+            app:layout_constraintStart_toStartOf="@id/mid_right_value"
+            app:layout_constraintTop_toBottomOf="@id/dcard_heading" />
+
+        <TextView
+            android:id="@+id/mid_left_value"
+            android:layout_width="wrap_content"
+            android:maxWidth="120dp"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:text="$1.1Cr"
+            android:theme="@style/number_style"
+            android:textSize="28sp"
+            app:layout_constraintTop_toBottomOf="@id/mid_left_heading"
+            app:layout_constraintEnd_toStartOf="@+id/card_progress"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/mid_right_value"
+            android:textColor="@color/progressStatus"
+            android:layout_width="wrap_content"
+            android:maxWidth="120dp"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:text="@string/_12_5_l"
+            android:theme="@style/number_style"
+            app:layout_constraintTop_toBottomOf="@id/mid_right_heading"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/card_progress" />
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_bottom_text"
+            app:constraint_referenced_ids="club_text,gold_text,gold_brick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/club_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:text="@string/club_upper_case"
+            style="@style/regular_style"
+            app:layout_constraintEnd_toStartOf="@+id/gold_brick"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_progress"/>
+
+        <ImageView
+            android:id="@+id/gold_brick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/gold_brick"
+            android:paddingVertical="5dp"
+            android:src="@drawable/gold_brick"
+            android:text="@string/club"
+            app:layout_constraintEnd_toStartOf="@+id/gold_text"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/club_text"
+            app:layout_constraintBottom_toBottomOf="@id/gold_text"
+            />
+
+        <TextView
+            android:id="@+id/gold_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/regular_style"
+            android:paddingVertical="10dp"
+            android:text="@string/gold"
+            android:fontFamily="@font/poppins_semibold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/gold_brick"
+            app:layout_constraintTop_toBottomOf="@id/card_progress">
+        </TextView>
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_top"
+            app:constraint_referenced_ids="gold_text,mid_left_value,card_progress"
+            app:barrierDirection="bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:id="@+id/dotted_line_two"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_marginVertical="15dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/dotted_line"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/barrier_top" />
+
+        <TextView
+            android:id="@+id/eligible_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:drawablePadding="4dp"
+            android:padding="10dp"
+            android:text="@string/eligible"
+            android:textSize="11sp"
+            android:fontFamily="@font/poppins_medium"
+            app:drawableStartCompat="@drawable/eligible_green"
+            app:layout_constraintBottom_toBottomOf="@id/dotted_line_two"
+            app:layout_constraintEnd_toEndOf="@id/dotted_line_two"
+            app:layout_constraintStart_toStartOf="@id/dotted_line_two"
+            app:layout_constraintTop_toTopOf="@id/dotted_line_two" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/card_progress_two"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="25"
+            app:indicatorTrackGapSize="0dp"
+            app:indicatorColor="@color/progressStatus"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/progress_mid_text"
+            app:trackColor="@color/progressBackground"
+            app:trackThickness="5dp" />
+
+        <TextView
+            android:id="@+id/progress_left_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/earned"
+            android:textSize="11sp"
+            android:fontFamily="@font/poppins_medium"
+            app:layout_constraintStart_toStartOf="@id/card_progress_two"
+            app:layout_constraintTop_toBottomOf="@id/eligible_text" />
+
+        <TextView
+            android:id="@+id/progress_mid_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/wtd_gwp"
+            android:textSize="11sp"
+            android:fontFamily="@font/poppins_medium"
+            android:padding="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/eligible_text" />
+
+        <TextView
+            android:id="@+id/progress_right_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/target"
+            android:textSize="11sp"
+            android:fontFamily="@font/poppins_medium"
+            android:padding="5dp"
+            app:layout_constraintEnd_toEndOf="@+id/card_progress_two"
+            app:layout_constraintTop_toBottomOf="@id/eligible_text" />
+
+        <TextView
+            android:id="@+id/progress_left_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/_50_000"
+            android:textSize="18sp"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/progressStatus"
+            app:layout_constraintStart_toStartOf="@id/card_progress_two"
+            app:layout_constraintTop_toBottomOf="@id/card_progress_two" />
+
+        <TextView
+            android:id="@+id/progress_right_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_2cr"
+            android:padding="5dp"
+            android:textSize="18sp"
+            android:fontFamily="@font/poppins_semibold"
+            app:layout_constraintEnd_toEndOf="@+id/card_progress_two"
+            app:layout_constraintTop_toBottomOf="@id/card_progress_two" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/bottom_progress_group"
+            app:constraint_referenced_ids="progress_left_text,progress_right_text,progress_mid_text,card_progress_two,progress_left_value,progress_right_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/card_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="card_progress_two,progress_right_value,progress_left_value,eligible_text" />
+
+
+        <TextView
+            android:drawablePadding="5dp"
+            android:id="@+id/card_bottom_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:maxLines="3"
+            android:text="@string/upcoming_slab_target_wtd_gwp"
+            android:textSize="11sp"
+            android:fontFamily="@font/poppins_medium"
+            app:drawableEndCompat="@drawable/ic_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_barrier" />
+
+        <TextView
+            android:id="@+id/card_bottom_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_15_1l"
+            android:theme="@style/number_style"
+            android:textSize="28sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_bottom_heading" />
+
+        <Button
+            android:id="@+id/dcard_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="15dp"
+            android:backgroundTint="@color/button_color"
+            style="@style/regular_style"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/view_incentive_details"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_bottom_value" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="5dp"
+    app:cardCornerRadius="10dp"
+    android:padding="40dp"
+    app:cardUseCompatPadding="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/action_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_12"
+            android:textColor="@color/primaryColor"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/action_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Renewals" />
+
+        <TextView
+            android:id="@+id/action_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="07 Days"
+            android:visibility="visible"
+            android:textColor="@color/warning"
+            android:textSize="12sp"
+            android:fontFamily="@font/poppins_semibold" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

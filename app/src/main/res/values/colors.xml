@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="warning">#eb2828</color>
+    <color name="backgroundColor">#f7f7f7</color>
+    <color name="primaryColor">#071E54</color>
+    <color name="quoteBackground">#88DEEC</color>
+    <color name="dottedLine">#DADDE5</color>
+    <color name="progressBackground">#dadde5</color>
+    <color name="progressStatus">#2bb445</color>
+    <color name="button_color">#055CA8</color>
+    <color name="dark_blue_color">#071e54</color>
+    <color name="light_blue_color">#88deec</color>
+    <color name="profile_background">#6482ce</color>
+</resources>
