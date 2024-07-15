@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="10dp"
     app:cardElevation="10dp"
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="15dp">
 
@@ -40,10 +40,11 @@
 
         <View
             android:id="@+id/dotted_line_one"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="15dp"
             android:background="@drawable/dotted_line"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/dcard_top_left" />
 
         <TextView
@@ -51,7 +52,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:maxLines="3"
-            android:text="@string/health_quaterly_control"
+            android:text="Motor Quaterly Campaign"
             android:textAlignment="center"
             android:textSize="18sp"
             android:paddingVertical="10dp"
@@ -83,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/progress_bag_icon"
-            android:src="@drawable/motor"
+            android:src="@drawable/ic_motor_blue"
             app:layout_constraintBottom_toBottomOf="@id/card_progress"
             app:layout_constraintEnd_toEndOf="@id/card_progress"
             app:layout_constraintStart_toStartOf="@id/card_progress"
@@ -98,7 +99,7 @@
             android:layout_marginTop="20dp"
             android:paddingHorizontal="10dp"
             app:layout_constraintWidth="120dp"
-            android:text="@string/slab_target"
+            android:text="Slab Target \n (Wtd. GWP)"
             android:textSize="11sp"
             android:fontFamily="@font/poppins_medium"
             app:layout_constraintStart_toStartOf="@id/mid_left_value"
@@ -113,7 +114,7 @@
             android:fontFamily="@font/poppins_medium"
             android:paddingHorizontal="10dp"
             android:layout_marginTop="20dp"
-            android:text="@string/earned_premium"
+            android:text="Achieved \n (Wtd. GWP)"
             app:layout_constraintStart_toStartOf="@id/mid_right_value"
             app:layout_constraintTop_toBottomOf="@id/dcard_heading" />
 
@@ -123,7 +124,7 @@
             android:maxWidth="120dp"
             android:layout_height="wrap_content"
             android:paddingHorizontal="10dp"
-            android:text="$1.1Cr"
+            android:text="75K"
             android:theme="@style/number_style"
             android:textSize="28sp"
             app:layout_constraintTop_toBottomOf="@id/mid_left_heading"
@@ -139,7 +140,7 @@
             android:maxWidth="120dp"
             android:layout_height="wrap_content"
             android:paddingHorizontal="10dp"
-            android:text="@string/_12_5_l"
+            android:text= "20.5K"
             android:theme="@style/number_style"
             app:layout_constraintTop_toBottomOf="@id/mid_right_heading"
             app:layout_constraintEnd_toEndOf="parent"
@@ -201,12 +202,12 @@
 
         <View
             android:id="@+id/dotted_line_two"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="15dp"
             android:layout_marginVertical="15dp"
-            android:layout_marginBottom="20dp"
             android:background="@drawable/dotted_line"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/barrier_top" />
 
         <TextView

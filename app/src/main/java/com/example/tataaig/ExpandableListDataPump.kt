@@ -22,8 +22,8 @@ object ExpandableListDataPump {
             helpItem.add("FAQs")
             helpItem.add("Raise a concern")
 
-            list.add(NavigationMenuGroup(R.drawable.ic_knowledge_center,"Knowledge Center",knowledgeItem))
-            list.add(NavigationMenuGroup(R.drawable.ic_knowledge_center,"Servicing",servicingItem))
+            list.add(NavigationMenuGroup(R.drawable.ic_knowledge_center,"Knowledge Center",knowledgeItem,true))
+            list.add(NavigationMenuGroup(R.drawable.ic_knowledge_center,"Servicing",servicingItem,true))
             list.add(NavigationMenuGroup(R.drawable.ic_knowledge_center,"Renewals",ArrayList()))
             list.add(NavigationMenuGroup(R.drawable.ic_knowledge_center,"Quick Quote",ArrayList()))
             list.add(NavigationMenuGroup(R.drawable.ic_business_report,"Business Report",ArrayList()))
@@ -31,7 +31,7 @@ object ExpandableListDataPump {
             list.add(NavigationMenuGroup(R.drawable.ic_campaign,"Campaigns",ArrayList()))
             list.add(NavigationMenuGroup(R.drawable.ph_hand_coins,"Commisions",ArrayList()))
             list.add(NavigationMenuGroup(R.drawable.locators,"Locators",ArrayList()))
-            list.add(NavigationMenuGroup(R.drawable.ic_help,"Help",helpItem))
+            list.add(NavigationMenuGroup(R.drawable.ic_help,"Help",helpItem,true))
             list.add(NavigationMenuGroup(R.drawable.logout,"Logout",ArrayList()))
 
             return list

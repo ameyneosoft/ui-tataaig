@@ -1,21 +1,19 @@
 package com.example.tataaig
 
-import NavMenuListAdapter
 import NavigationMenuGroup
-import android.animation.ValueAnimator
 import android.os.Bundle
-import android.util.Log
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
-import android.widget.ExpandableListView
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.PopupWindow
-import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -25,9 +23,13 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.children
 import androidx.core.view.marginEnd
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
+import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.example.tataaig.databinding.ActivityMainBinding
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.journaldev.expandablelistview.ExpandableListDataPump
@@ -42,34 +44,59 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var drawerLayout: DrawerLayout
     lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
-    private lateinit var expandableListView: ExpandableListView
-    private lateinit var expandableListAdapter: NavMenuListAdapter
     private lateinit var expandableListDetail: List<NavigationMenuGroup>
+    private lateinit var menuRecyclerView: RecyclerView
+    private lateinit var menuListAdapter: MenuListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setContentView(binding.main)
-
-        expandableListView = findViewById<ExpandableListView>(R.id.expandableListView)
         expandableListDetail = ExpandableListDataPump.data
 
-
-        expandableListAdapter = NavMenuListAdapter(this, expandableListDetail )
-        expandableListView.setAdapter(expandableListAdapter)
-        expandableListAdapter.groupCount
-        repeat(expandableListAdapter.groupCount){
-            expandableListView.expandGroup(it)
-        }
-//        expandableListView.setOnGroupExpandListener { groupPosition ->
-//            animateExpand(groupPosition)
-//        }
-//
-//        expandableListView.setOnGroupCollapseListener { groupPosition ->
-//            animateCollapse(groupPosition)
-//        }
+        menuRecyclerView = binding.menuRecycleView
+        menuRecyclerView.layoutManager = LinearLayoutManager(this, VERTICAL,false)
+        menuListAdapter = MenuListAdapter(expandableListDetail)
+        menuRecyclerView.adapter = menuListAdapter
 
 
+        val dotRec = binding.motorRecView.dotRecyclerView
+        dotRec.layoutManager  =LinearLayoutManager(this, HORIZONTAL,false)
+        val li = listOf(true, false, false,false)
+        val dotViewRecyclerAdapter = DotViewRecyclerAdapter(li)
+        dotRec.adapter = dotViewRecyclerAdapter
+
+
+        val imageRecycler = binding.imagesRecyclerView
+        imageRecycler.layoutManager = LinearLayoutManager(this, HORIZONTAL,false)
+        val list = listOf<Int>(1,2,3)
+        val imageRecyclerAdapter = ImageRecycler(list)
+        imageRecycler.adapter =imageRecyclerAdapter
+
+        val motorRecycler = binding.motorRecView.motorRecyclerView
+        motorRecycler.layoutManager =LinearLayoutManager(this, HORIZONTAL,false)
+        val motorList = listOf<Int>(1,2,3,4)
+        val MotorAdapter = MotorAdapter(motorList)
+        motorRecycler.adapter = MotorAdapter
+        PagerSnapHelper().attachToRecyclerView(motorRecycler)
+
+        motorRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+
+                for(i in  0..3){
+                    if (firstVisibleItemPosition == i) {
+                        (dotRec.layoutManager as LinearLayoutManager).getChildAt(i)?.findViewById<ImageView>(R.id.dot_view)?.setImageResource(R.drawable.active_dot)
+
+                    } else {
+                        (dotRec.layoutManager as LinearLayoutManager).getChildAt(i)?.findViewById<ImageView>(R.id.dot_view)?.setImageResource(R.drawable.inactive_dot)
+
+                    }
+                }
+            }
+        })
 
         drawerLayout = findViewById(R.id.main)
         findViewById<ImageButton>(R.id.nav_close).setOnClickListener{
@@ -98,71 +125,28 @@ class MainActivity : AppCompatActivity() {
 
 
         textView.setOnClickListener {
-
-            Log.d("mytag","inside listener")
             showTooltip(it)
-            true
         }
+
+        val spanView = binding.motorDetailedHeader
+        val spanString = SpannableString("You are Not Eligible for 2/4 Campaign")
+        spanString.setSpan(ForegroundColorSpan(getColor(R.color.warning)),8,21,Spannable.SPAN_EXCLUSIVE_INCLUSIVE )
+        spanView.text = spanString
+
     }
 
     private fun showTooltip(anchorView: View) {
-        // Inflate the custom tooltip layout
         val inflater = getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val tooltipView = inflater.inflate(R.layout.toolbar_tip, null)
 
 
         val popupWindow = PopupWindow(tooltipView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
 
-        // Show the popup window
         popupWindow.isOutsideTouchable = true
         popupWindow.isFocusable = true
-        val xoffSet = (anchorView.width - anchorView.paddingEnd -anchorView.marginEnd -10 )/2
-        val yoffSet = -1 * anchorView.height + 10
+        val xoffSet = (anchorView.width - anchorView.paddingEnd -anchorView.marginEnd - 40 )/2
+        val yoffSet = -1 * anchorView.height + 20
         popupWindow.showAsDropDown(anchorView,xoffSet,yoffSet)
-    }
-
-    private fun animateExpand(groupPosition: Int) {
-        val childCount = expandableListAdapter.getChildrenCount(groupPosition)
-        for (i in 0 until childCount) {
-            val childView = expandableListAdapter.getChildView ( groupPosition, i,
-                false,
-                null,
-                null)
-            childView?.let {
-                val animator = ValueAnimator.ofFloat(0f, 1f).apply {
-                    duration = 300
-                    addUpdateListener { animation ->
-                        val value = animation.animatedValue as Float
-                        it.alpha = value
-                        it.scaleX = value
-                        it.scaleY = value
-                    }
-                }
-                animator.start()
-            }
-        }
-    }
-
-    private fun animateCollapse(groupPosition: Int) {
-        val childCount = expandableListAdapter.getChildrenCount(groupPosition)
-        for (i in 0 until childCount) {
-            val childView = expandableListAdapter.getChildView ( groupPosition, i,
-            false,
-            null,
-            null)
-            childView?.let {
-                val animator = ValueAnimator.ofFloat(1f, 0f).apply {
-                    duration = 300
-                    addUpdateListener { animation ->
-                        val value = animation.animatedValue as Float
-                        it.alpha = value
-                        it.scaleX = value
-                        it.scaleY = value
-                    }
-                }
-                animator.start()
-            }
-        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -222,112 +206,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun addCards() {
-        var cards: MutableList<DetailedCard> = ArrayList<DetailedCard>()
-        cards.add(
-            DetailedCard(
-                card_id = R.id.gaint_step_card,
-                dcard_top_left = "FY 24- 25",
-                dcard_top_right = "As on 12 Jun'24",
-                dcard_heading = "",
-                max_card_progress = 100,
-                card_progress = 35,
-                progress_image = 0,
-                mid_left_heading = "Target Premium",
-                mid_right_heading = "Earned Premium",
-                mid_left_value = "$1.1Cr",
-                mid_right_value = "$12.5L",
-                group_visible = View.GONE,
-                bottom_heading = "1.95 Away From Diamond Club",
-                bottom_progress_visible = View.VISIBLE,
-                dcard_button = "View Incentive Details",
-                card_bottom_value = "",
-                eligible_text = "Not Eligible",
-                eligible_drawable = R.drawable.ineligible
-            )
-        )
-        cards.add(
-            DetailedCard(
-                card_id = R.id.health_card,
-                dcard_top_left = "Quaterly \n02 May - 02 Aug'24",
-                dcard_top_right = "As on 12 Jun'24",
-                dcard_heading = "Health Quaterly Campaign",
-                max_card_progress = 750,
-                card_progress = 205,
-                progress_image = R.drawable.ic_health_blue,
-                mid_left_heading = "Slab Target\n(Wtd. GWP)",
-                mid_right_heading = "Achieved\n(Wtd.GWP)",
-                mid_left_value = "75K",
-                mid_right_value = "20.5K",
-                group_visible = View.GONE,
-                bottom_heading = "Upcoming Slab Target (Wtd. GWP)",
-                bottom_progress_visible = View.GONE,
-                dcard_button = "View Campaign",
-                card_bottom_value = "1.5L"
-
-            )
-        )
-        cards.add(
-            DetailedCard(
-                card_id = R.id.motor_card,
-                dcard_top_left = "Quaterly \n02 May - 02 Aug'24",
-                dcard_top_right = "As on 12 Jun'24",
-                dcard_heading = "Motor Quaterly Campaign",
-                max_card_progress = 750,
-                card_progress = 205,
-                progress_image = R.drawable.ic_motor_blue,
-                mid_left_heading = "Slab Target\n(Wtd. GWP)",
-                mid_right_heading = "Achieved\n(Wtd.GWP)",
-                mid_left_value = "75K",
-                mid_right_value = "20.5K",
-                group_visible = View.GONE,
-                bottom_heading = "Upcoming Slab Target (Wtd. GWP)",
-                bottom_progress_visible = View.GONE,
-                dcard_button = "View Campaign",
-                card_bottom_value = "1.5L",
-                eligible_text = "Not Eligible",
-                eligible_drawable = R.drawable.ineligible
-            )
-        )
-        cards.add(
-            DetailedCard(
-                card_id = R.id.travel_card,
-                dcard_top_left = "Quaterly \n02 May - 02 Aug'24",
-                dcard_top_right = "As on 12 Jun'24",
-                dcard_heading = "Travel 24 Campaign",
-                max_card_progress = 750,
-                card_progress = 205,
-                progress_image = R.drawable.ic_travel_blue,
-                mid_left_heading = "Slab Target\n(Wtd. GWP)",
-                mid_right_heading = "Achieved\n(Wtd.GWP)",
-                mid_left_value = "75K",
-                mid_right_value = "20.5K",
-                group_visible = View.GONE,
-                bottom_heading = "Upcoming Slab Target (Wtd. GWP)",
-                bottom_progress_visible = View.GONE,
-                dcard_button = "View Campaign",
-                card_bottom_value = "1.5L"
-            )
-        )
-        cards.add(
-            DetailedCard(
-                card_id = R.id.comm_line_card,
-                dcard_top_left = "Quaterly \n02 May - 02 Aug'24",
-                dcard_top_right = "As on 12 Jun'24",
-                dcard_heading = "Comm.Lines Quarterly Campaign",
-                max_card_progress = 750,
-                card_progress = 550,
-                progress_image = R.drawable.ic_comm_lines_blue,
-                mid_left_heading = "Slab Target",
-                mid_right_heading = "Achieved",
-                mid_left_value = "75K",
-                mid_right_value = "55K    ",
-                group_visible = View.VISIBLE,
-                bottom_heading = "Upcoming Slab Target",
-                bottom_progress_visible = View.GONE,
-                dcard_button = "View Campaign",
-                card_bottom_value = "25L"
-            )
-        )
+       val cards = CardsDataPump.data
 
         cards.forEach { detailedCard ->
             findViewById<CardView>(detailedCard.card_id).apply {
@@ -380,8 +259,6 @@ class MainActivity : AppCompatActivity() {
         binding.travelHeader.subtitle.text = "Travel"
         binding.commLineHeader.subtitle.text = "Comm. Lines"
     }
-
-
 
 }
 

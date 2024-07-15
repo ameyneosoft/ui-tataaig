@@ -205,41 +205,14 @@
                     app:layout_constraintStart_toEndOf="@+id/travel_icon"
                     app:layout_constraintTop_toBottomOf="@id/quote_text" />
 
-                <HorizontalScrollView
-                    android:id="@+id/images_view"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/images_recycler_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/comm_lines_icon">
+                    app:layout_constraintTop_toBottomOf="@+id/comm_lines_icon" />
 
-
-                    <LinearLayout
-                        android:id="@+id/scroll_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <include
-                            android:id="@+id/image_view_one"
-                            layout="@layout/image_card"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="5dp"
-                            android:layout_marginVertical="20dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/gaint_step_text" />
-
-                        <include
-                            android:id="@+id/image_view_two"
-                            layout="@layout/image_card"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="5dp"
-                            android:layout_marginVertical="20dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/gaint_step_text" />
-                    </LinearLayout>
-                </HorizontalScrollView>
 
                 <include
                     android:id="@+id/gaint_step_text"
@@ -247,12 +220,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/images_view" />
+                    app:layout_constraintTop_toBottomOf="@+id/images_recycler_view" />
 
                 <include
                     android:id="@+id/gaint_step_card"
                     layout="@layout/detailed_card"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -278,7 +251,7 @@
                 <include
                     android:id="@+id/health_card"
                     layout="@layout/detailed_card"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -293,14 +266,23 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/health_card" />
 
+                <TextView
+                    android:id="@+id/motor_detailed_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:fontFamily="@font/poppins_italic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/motor_header" />
+
                 <include
-                    android:id="@+id/motor_card"
-                    layout="@layout/detailed_card"
+                    android:id="@+id/motor_rec_view"
+                    layout="@layout/motor_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/motor_header" />
+                    app:layout_constraintTop_toBottomOf="@id/motor_detailed_header" />
 
                 <include
                     android:id="@+id/travel_header"
@@ -309,12 +291,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/motor_card" />
+                    app:layout_constraintTop_toBottomOf="@id/motor_rec_view" />
 
                 <include
                     android:id="@+id/travel_card"
                     layout="@layout/detailed_card"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -332,7 +314,7 @@
                 <include
                     android:id="@+id/comm_line_card"
                     layout="@layout/detailed_card"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -353,7 +335,7 @@
 
         <LinearLayout
             android:id="@+id/nav_layout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -363,12 +345,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <ExpandableListView
-                android:id="@+id/expandableListView"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/menu_recycle_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="10dp"
-                android:indicatorRight="?android:attr/expandableListPreferredItemIndicatorLeft" />
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 

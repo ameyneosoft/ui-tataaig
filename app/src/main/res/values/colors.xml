@@ -13,4 +13,5 @@
     <color name="dark_blue_color">#071e54</color>
     <color name="light_blue_color">#88deec</color>
     <color name="profile_background">#6482ce</color>
+    <color name="indicator_bg">#c8c6c6</color>
 </resources>
